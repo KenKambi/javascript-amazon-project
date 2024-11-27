@@ -69,7 +69,7 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () =>{
-      const productId = button.dataset.productId; //productName changed to camel from kebab
+      const productId = button.dataset.productId; //productId changed to camel from kebab in html above
       
       let matchingItem;
 
@@ -88,6 +88,17 @@ document.querySelectorAll('.js-add-to-cart')
         });
       }
       console.log(cart);
+
+      let cartQuantity = 0;
+      cart.forEach((item) => {
+        cartQuantity += item.quantity;
+      });
+      console.log (cartQuantity);
+
+      document.getElementById('cart-value').textContent = cartQuantity;
+
+
     });
   });
+
 
