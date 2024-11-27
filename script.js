@@ -1,4 +1,6 @@
 //products array is in the data folder
+import {cart} from '../javascript-amazon-project/cart.js';
+import {products} from '../javascript-amazon-project/data/products.js';
 
 
 let productsHTML=``;//accumulator pattern
