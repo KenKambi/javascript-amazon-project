@@ -1,11 +1,11 @@
 //products array is in the data folder
-import {cart} from '../javascript-amazon-project/cart.js';
+import {cart, addtoCart} from '../javascript-amazon-project/cart.js';
 import {products} from '../javascript-amazon-project/data/products.js';
 
 
 let productsHTML=``;//accumulator pattern
 
-//it'll take above objects one by one, save in product and runs the function.
+//it'll take objects in products one by one, save in product and runs the function.
 products.forEach((product) =>{ 
     productsHTML += `
     <div class="product-container">
@@ -68,36 +68,24 @@ document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
 
 
+function updateCartQuantity(){
+  let cartQuantity = 0;
+  cart.forEach((cartItem) => {
+    cartQuantity += cartItem.quantity;
+  });
+  console.log (cartQuantity);
+  document.getElementById('cart-value').textContent = cartQuantity;
+
+};
+
+
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () =>{
       const productId = button.dataset.productId; //productId changed to camel from kebab in html above
-      
-      let matchingItem;
-
-      cart.forEach((item) =>{
-        if (productId === item.productId){
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem){
-        matchingItem.quantity += 1; 
-      }else{
-        cart.push({
-          productId: productId,
-          quantity: 1
-        });
-      }
-      console.log(cart);
-
-      let cartQuantity = 0;
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-      console.log (cartQuantity);
-
-      document.getElementById('cart-value').textContent = cartQuantity;
+      addtoCart(productId);
+      updateCartQuantity();
+     
 
 
     });
