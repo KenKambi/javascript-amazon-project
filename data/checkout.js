@@ -87,7 +87,7 @@ function renderOrderSummary(){
 
         const container = document.querySelector(`.js-cart-item-conatiner-${productId}`);
         container.remove();//removes html fom page
-        renderPaymentSummary();
+        renderPaymentSummary(); 
       });
     });
 
